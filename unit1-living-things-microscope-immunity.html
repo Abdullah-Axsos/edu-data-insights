@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>الوحدة الأولى | الصف السادس - مدرسة الفاروق</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: #f9fafb;
+      color: #0f172a;
+      user-select: none; /* منع التحديد */
+    }
+    header {
+      background: linear-gradient(90deg, #22c55e, #3b82f6);
+      color: white;
+      padding: 16px;
+      text-align: center;
+    }
+    header img {
+      height: 80px;
+      margin-bottom: 10px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    header p {
+      margin: 4px 0 0;
+      font-size: 14px;
+    }
+    nav {
+      background: #e2e8f0;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #1e40af;
+      font-weight: bold;
+    }
+    nav a:hover { color: #dc2626; }
+    section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 12px;
+      margin-top: 12px;
+    }
+    .section {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .section h2 {
+      margin-top: 0;
+      font-size: 20px;
+      color: #2563eb;
+    }
+    footer {
+      background: #e2e8f0;
+      text-align: center;
+      padding: 12px;
+      font-size: 13px;
+      color: #334155;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="555449919_1349402747194957_3103182369664900111_n.jpg" alt="شعار مدرسة الفاروق">
+  <h1>الوحدة الأولى: الكائنات الحية والمجهر والمناعة</h1>
+  <p>مدرسة ذكور الفاروق الأساسية العليا - بيت لقيا | الصف السادس | إعداد المعلم: عبدالله عبيد</p>
+</header>
+
+<section class="section">
+  <h2>مقدمة الوحدة</h2>
+  <p>
+    تهدف هذه الوحدة إلى تعريف الطلبة بمفاهيم أساسية في علم الأحياء، مثل تصنيف الكائنات الحية، استخدام المجهر الضوئي، وفهم أثر الكائنات الدقيقة على صحة الإنسان.  
+    تم إعداد هذه الصفحة لتكون مرجعًا تفاعليًا.
+  </p>
+</section>
+
+<nav>
+<section id="lesson1" class="section">
+  <a href="https://69313b5cd34f7a9bf7502b08--effortless-salamander-07ba71.netlify.app/" target="_blank" style="text-decoration:none; color:inherit;">
+    <h2>المجهر الضوئي</h2>
+    <img src="unnamed.png" alt="صورة توضيحية للمجهر الضوئي" style="width:100%; border-radius:12px; margin-top:10px; cursor:pointer;">
+  </a>
+</section>
+
+<section id="lesson2" class="section">
+  <a href="https://6931489f6ea3fef7e3cf192e--starlit-sprite-e34e20.netlify.app/" target="_blank" style="text-decoration:none; color:inherit;">
+    <h2>تصنيف الكائنات الدقيقة وأثرها</h2>
+    <img src="Gemini_Generated_Image_6pcr5f6pcr5f6pcr.png" alt="صورة توضيحية للكائنات الدقيقة والمناعة" style="width:100%; border-radius:12px; margin-top:10px; cursor:pointer;">
+  </a>
+</section>
+
+</nav>
+
+<footer>
+  © وزارة التربية والتعليم الفلسطينية - مدرسة ذكور الفاروق الأساسية العليا | الصف السادس | إعداد: عبدالله عبيد
+</footer>
+
+<script>
+// منع النسخ واللصق والزر الأيمن
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('cut', e => e.preventDefault());
+document.addEventListener('paste', e => e.preventDefault());
+
+// منع اختصارات النسخ والطباعة والتحديد
+document.addEventListener('keydown', e => {
+  const blocked = ['c','v','x','s','p','a'];
+  if ((e.ctrlKey || e.metaKey) && blocked.includes(e.key.toLowerCase())) {
+    e.preventDefault();
+  }
+  if (e.key === 'PrintScreen') {
+    alert('تصوير الشاشة غير مسموح.');
+    e.preventDefault();
+  }
+});
+</script>
+
+</body>
+</html>

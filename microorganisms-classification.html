@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>أثر الكائنات الدقيقة | الصف السادس</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap">
+  <style>
+    :root{
+      --brand-1:#22c55e; --brand-2:#3b82f6;
+      --text:#0f172a; --muted:#64748b; --card:#ffffff; --bg:#f8fafc; --border:#e2e8f0;
+      --accent:#16a34a; --warn:#ef4444;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:'Cairo',sans-serif; background:var(--bg); color:var(--text);
+      user-select:none; /* منع التحديد */
+    }
+    header, footer{
+      background:linear-gradient(90deg,var(--brand-1),var(--brand-2));
+      color:#fff; padding:12px 16px; text-align:center;
+    }
+    header h1{margin:0; font-size:22px}
+    header p{margin:4px 0 0; font-size:14px; opacity:.95}
+    .container{max-width:1000px; margin:auto; padding:20px}
+    .section{
+      margin-bottom:28px; background:var(--card); border:1px solid var(--border);
+      border-radius:16px; padding:16px; box-shadow:0 2px 6px rgba(0,0,0,.05)
+    }
+    .section h2{margin:0 0 8px; font-size:18px; color:#1e40af}
+    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    .media{width:100%; border-radius:12px; margin-top:10px; display:block}
+    .card{
+      background:#f1f5f9; border:1px solid #cbd5e1; border-radius:12px; padding:12px
+    }
+    .badge{display:inline-block; background:#e2f8e9; color:#065f46; border:1px solid #bbf7d0; border-radius:999px; padding:4px 8px; font-size:12px; margin:6px 6px 0 0}
+    .btn{
+      display:inline-block; background:var(--accent); color:#fff; border:none; border-radius:10px;
+      padding:10px 14px; cursor:pointer; font-weight:700
+    }
+    .btn-outline{background:#fff; color:#0f172a; border:1px solid var(--border)}
+    .kingdom{
+      background:#f8fafc; border:1px solid var(--border); border-radius:12px; padding:12px; cursor:pointer; transition:.15s
+    }
+    .kingdom:hover{background:#eef2ff; border-color:#c7d2fe}
+    .modal{position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
+      background:#fff; border:2px solid var(--brand-2); border-radius:14px; padding:16px; width:92%; max-width:560px; z-index:1001; display:none}
+    .overlay{position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:1000; display:none}
+    .close-btn{margin-top:12px; background:var(--warn); color:#fff; border:none; padding:8px 12px; border-radius:8px; cursor:pointer}
+    .law-card{background:#f0fdf4; border:1px solid #bbf7d0; border-radius:12px; padding:14px; color:#166534}
+    .list{margin:8px 0 0; padding-inline-start:18px}
+    .list li{margin:6px 0}
+    .muted{color:var(--muted)}
+    .row{display:flex; gap:10px; flex-wrap:wrap}
+    .deadline{font-size:12px; color:#334155}
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>وزارة التربية والتعليم الفلسطينية - مديرية رام الله والبيرة</h1>
+  <p>مدرسة ذكور الفاروق الأساسية العليا - بيت لقيا | الصف السادس | إعداد المعلم: عبدالله عبيد</p>
+</header>
+
+<div class="container">
+
+  <!-- تمهيد بصري -->
+  <section class="section">
+  <h2>فيديو تعليمي: أثر الكائنات الدقيقة في حياتنا</h2>
+  <iframe class="media" height="420"
+    src="https://www.youtube.com/embed/a1jcalNHNzE"
+    title="أثر الكائنات الدقيقة | المناعة والتطعيم"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</section>
+
+  <!-- بطاقات المفاهيم الرئيسية من التقرير -->
+  <section class="section">
+    <h2>المناعة: محاربك الداخلي</h2>
+    <div class="grid-2">
+      <div class="card">
+        <strong>تعريف مبسط:</strong>
+        <ul class="list">
+          <li>قدرة الجسم على التعرف على مسببات الأمراض (فيروسات، بكتيريا) ومقاومتها ومنع أذاها.</li>
+          <li>نظام دفاع يعمل باستمرار لحماية الأعضاء والخلايا.</li>
+        </ul>
+        <span class="badge">جهاز المناعة</span>
+        <span class="badge">مسببات الأمراض</span>
+      </div>
+      <div class="law-card">
+        <strong>أنواع المناعة:</strong>
+        <ul class="list">
+          <li><b>المناعة الفطرية:</b> خط الدفاع الأول، سريع وعام.</li>
+          <li><b>المناعة المكتسبة:</b> دفاع متخصص يتعلم ويكوّن ذاكرة ضد العدو.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>التطعيم: تدريب مناعتك بأمان</h2>
+    <div class="grid-3">
+      <div class="card">
+        <strong>الفكرة:</strong>
+        <ul class="list">
+          <li>إكساب الجسم مناعة محددة مسبقًا ضد أمراض خطيرة.</li>
+          <li>يعزز المناعة المكتسبة ويُنشّط ذاكرتها.</li>
+        </ul>
+        <span class="badge">لقاحات</span>
+        <span class="badge">أمصال</span>
+      </div>
+      <div class="card">
+        <strong>نماذج أمراض مستهدفة:</strong>
+        <ul class="list">
+          <li>فيروس شلل الأطفال</li>
+          <li>فيروس الجدري</li>
+          <li>الملاريا (طفيل البلازموديوم)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <strong>بطاقة التطعيم:</strong>
+        <ul class="list">
+          <li>سجل اللقاحات للفرد منذ الولادة.</li>
+          <li>متابعة صحية لضمان مواعيد التحصين.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>العلم حليفك: البنسلين مثالًا</h2>
+    <div class="grid-2">
+      <div class="card">
+        <strong>مضاد حيوي:</strong>
+        <ul class="list">
+          <li>البنسلين يُستخلص من فطر البنسيليوم.</li>
+          <li>يدعم الجسم في محاربة العدوى البكتيرية.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <strong>فكرة تربوية:</strong>
+        <ul class="list">
+          <li>الكائنات الدقيقة ليست دومًا أعداء؛ بعضها نافعة ومفيدة.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- نشاط تفاعلي بسيط -->
+  <section class="section">
+    <h2>نشاط تفاعلي: صنّف التأثير</h2>
+    <div class="grid-2">
+      <div class="card">
+        <label for="impactSelect"><strong>اختر حالة:</strong></label>
+        <select id="impactSelect" class="media" style="height:auto; padding:8px; width:100%">
+          <option value="">— اختر —</option>
+          <option value="benefit">الخميرة في صناعة الخبز</option>
+          <option value="benefit2">استخلاص البنسلين من فطر البنسيليوم</option>
+          <option value="harm">الملاريا لدى الإنسان</option>
+          <option value="harm2">صدأ القمح في الزراعة</option>
+        </select>
+        <button class="btn" style="margin-top:10px" onclick="classifyImpact()">تصنيف</button>
+      </div>
+      <div class="law-card" id="impactResult">
+        <strong>النتيجة:</strong>
+        <p class="muted">اختر حالة لمعرفة هل هي أثر نافع أم ضار، مع تفسير مبسط.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ممالك وتصنيف مختصر (ترابط بصري بلا نص داخل الصورة الرئيسية) -->
+  <section class="section">
+    <h2>نظرة سريعة على التصنيف</h2>
+    <p class="muted">التصنيف يعتمد على نوع الخلية، عدد الخلايا، وطريقة التغذية. اضغط على بطاقة لمزيد من الأمثلة.</p>
+    <div class="grid-3">
+      <div class="kingdom" onclick="openKingdom('animals')"><strong>الحيوانات</strong><p class="muted">إنسان، طيور، أسماك...</p></div>
+      <div class="kingdom" onclick="openKingdom('plants')"><strong>النباتات</strong><p class="muted">أشجار، أعشاب...</p></div>
+      <div class="kingdom" onclick="openKingdom('fungi')"><strong>الفطريات</strong><p class="muted">فطر، عفن...</p></div>
+      <div class="kingdom" onclick="openKingdom('protists')"><strong>الطلائعيات</strong><p class="muted">أوليات، طحالب...</p></div>
+      <div class="kingdom" onclick="openKingdom('eubacteria')"><strong>البكتيريا الحقيقية</strong><p class="muted">عصوية، كروية...</p></div>
+      <div class="kingdom" onclick="openKingdom('archaebacteria')"><strong>البكتيريا القديمة</strong><p class="muted">محبة للظروف القاسية...</p></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  © وزارة التربية والتعليم الفلسطينية - مدرسة ذكور الفاروق الأساسية العليا | الصف السادس | إعداد: عبدالله عبيد
+</footer>
+
+<!-- نافذة منبثقة عامة -->
+<div class="overlay" id="overlay" onclick="closeModal()"></div>
+<div class="modal" id="modal">
+  <h3 id="modalTitle">معلومة</h3>
+  <div id="modalContent" class="muted">...</div>
+  <button class="close-btn" onclick="closeModal()">إغلاق</button>
+</div>
+
+<script>
+/* فتح الفيديو المضمن */
+function openVideo(){
+  const box = document.getElementById('videoBox');
+  box.style.display = 'block';
+  // تمرير للمرئية
+  box.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+/* نشاط: تصنيف الأثر (نافع/ضار) */
+function classifyImpact(){
+  const v = document.getElementById('impactSelect').value;
+  const out = document.getElementById('impactResult');
+  if(!v){
+    out.innerHTML = '<strong>النتيجة:</strong><p class="muted">من فضلك اختر حالة أولًا.</p>';
+    return;
+  }
+  const MAP = {
+    'benefit': {label:'أثر نافع', text:'الخميرة كائن دقيق نافِع يُستخدم في تخمير العجين وصناعة الخبز.'},
+    'benefit2': {label:'أثر نافع', text:'البنسلين مضاد حيوي مُستخلص من فطر، يدعم الجسم ضد العدوى البكتيرية.'},
+    'harm': {label:'أثر ضار', text:'الملاريا مرض يسببه طفيل البلازموديوم وينتقل عبر البعوض.'},
+    'harm2': {label:'أثر ضار', text:'صدأ القمح يُتلف المحاصيل ويؤثر على الأمن الغذائي.'}
+  };
+  const r = MAP[v];
+  out.innerHTML = '<strong>النتيجة:</strong><p><b>'+r.label+':</b> '+r.text+'</p>';
+}
+
+/* نافذة الممالك */
+const KINGDOMS = {
+  animals: {
+    title:'مملكة الحيوانات',
+    content:'كائنات متعددة الخلايا، غيرية التغذية، أجهزة متخصصة للحركة والاستجابة.'
+  },
+  plants: {
+    title:'مملكة النباتات',
+    content:'كائنات متعددة الخلايا، ذاتية التغذية بالتركيب الضوئي، جدر خلوية سليلوزية.'
+  },
+  fungi: {
+    title:'مملكة الفطريات',
+    content:'غيرية التغذية بالامتصاص، جدر خلوية كيتينية، تشمل الفطر والعفن والخمائر.'
+  },
+  protists: {
+    title:'مملكة الطلائعيات',
+    content:'مجموعة متنوعة، غالبًا أحادية الخلية، تشمل طحالب وأوليات وكائنات مجهرية.'
+  },
+  eubacteria: {
+    title:'البكتيريا الحقيقية',
+    content:'بدائية النواة، أشكال كروية/عصوية/حلزونية، تتواجد في بيئات مختلفة.'
+  },
+  archaebacteria: {
+    title:'البكتيريا القديمة',
+    content:'بدائية النواة، محبة للظروف القاسية كالموالح العالية والحرارة الشديدة.'
+  }
+};
+function openKingdom(k){
+  const data = KINGDOMS[k] || {title:'معلومة', content:'لا توجد بيانات.'};
+  document.getElementById('modalTitle').textContent = data.title;
+  document.getElementById('modalContent').textContent = data.content;
+  document.getElementById('modal').style.display = 'block';
+  document.getElementById('overlay').style.display = 'block';
+}
+function closeModal(){
+  document.getElementById('modal').style.display = 'none';
+  document.getElementById('overlay').style.display = 'none';
+}
+
+/* منع النسخ واللصق والزر الأيمن وتصوير الشاشة */
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('cut', e => e.preventDefault());
+document.addEventListener('paste', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  const blocked = ['c','v','x','s','p','a'];
+  if((e.ctrlKey || e.metaKey) && blocked.includes(e.key.toLowerCase())) e.preventDefault();
+  if(e.key === 'PrintScreen'){ alert('تصوير الشاشة غير مسموح.'); e.preventDefault(); }
+});
+
+/* منطق صلاحية زمنية (اختياري): أغلق المحتوى بعد موعد محدد */
+const deadlineISO = null; // مثال: '2025-12-10T07:00:00+03:00'
+(function enforceDeadline(){
+  if(!deadlineISO) return;
+  const now = new Date();
+  const deadline = new Date(deadlineISO);
+  if(now > deadline){
+    document.body.innerHTML = '<header><h1>انتهت صلاحية العرض</h1><p>يرجى التواصل مع المعلم للاطلاع على المواد البديلة.</p></header>';
+  }
+})();
+</script>
+</body>
+</html>

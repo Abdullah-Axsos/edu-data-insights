@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عَقِيلَة | عقل يتعلم، عالم يتطور</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root { --aqila-primary: #059669; --aqila-blue: #005a8d; --aqila-gold: #fdb913; }
+        body { margin: 0; overflow: hidden; background-color: #020617; font-family: 'Tajawal', sans-serif; color: white; }
+        
+        /* الخلفية ثلاثية الأبعاد */
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        
+        /* طبقات الواجهة */
+        .layer { position: absolute; z-index: 10; width: 100%; height: 100%; display: none; opacity: 0; transition: 0.6s ease; overflow-y: auto; padding: 100px 20px 50px; }
+        .layer.active { display: flex; opacity: 1; flex-direction: column; align-items: center; }
+        
+        /* التصميم الزجاجي */
+        .glass-panel { 
+            background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(25px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            width: 100%; max-width: 1200px;
+        }
+
+        /* الجداول الرسمية */
+        .official-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .official-table th, .official-table td { border: 1px solid rgba(255,255,255,0.1); padding: 15px; text-align: right; }
+        .official-table th { background: rgba(5, 150, 105, 0.2); color: var(--aqila-gold); font-weight: 900; }
+
+        input, select, textarea { 
+            background: rgba(255,255,255,0.05) !important; color: white !important; 
+            border: 1px solid rgba(255,255,255,0.1) !important; border-radius: 1rem; 
+            padding: 12px; outline: none; transition: 0.3s;
+        }
+        input:focus { border-color: var(--aqila-primary) !important; background: rgba(255,255,255,0.1) !important; }
+
+        .btn-nav { 
+            background: rgba(255,255,255,0.05); padding: 12px 24px; border-radius: 15px; 
+            border: 1px solid rgba(255,255,255,0.1); font-weight: bold; cursor: pointer;
+        }
+        .btn-nav:hover { background: var(--aqila-primary); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(5, 150, 105, 0.3); }
+
+        @media print { .no-print { display: none !important; } body { overflow: visible !important; background: white !important; } .glass-panel { background: white !important; color: black !important; box-shadow: none !important; backdrop-filter: none !important; border: none !important; } }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container" class="no-print"></div>
+
+    <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center px-10 no-print">
+        <div class="flex items-center gap-4 cursor-pointer" onclick="showLayer('home')">
+                <img src="founder-seal.png" alt="Logo" class="w-10 h-10 object-contain">
+				<img src="aqila-logo.png" alt="Logo" class="w-10 h-10 object-contain">
+            <span class="text-2xl font-black tracking-tighter text-emerald-500">عَقِيلَة <span class="text-xs text-white opacity-50">2026</span></span>
+        </div>
+        <div class="flex gap-4">
+            <button onclick="showLayer('student')" class="btn-nav text-xs">مختبر الطالب</button>
+            <button onclick="showLayer('teacher')" class="btn-nav text-xs">بوابة المعلم</button>
+            <button onclick="showLayer('manager')" class="btn-nav text-xs">إدارة المنظومة</button>
+        </div>
+    </nav>
+
+    <div id="layer-home" class="layer active items-center justify-center">
+        <div class="text-center max-w-4xl px-6">
+            <h1 class="text-6xl md:text-8xl font-black mb-6 bg-gradient-to-r from-white via-emerald-400 to-blue-500 bg-clip-text text-transparent">عقلٌ يتعلّم، فلسطين تتطور</h1>
+            <p class="text-xl text-slate-400 mb-10 leading-relaxed max-w-2xl mx-auto">
+                منصة عَقِيلَة هي نظام بيئي تعليمي عالمي متكامل، يعتمد على بنية Microservices لدمج الذكاء الاصطناعي في خدمة الطالب والمعلم.
+            </p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <div class="glass-panel p-8 w-72 text-center border-t-4 border-emerald-500">
+                    <img src="Per Pic.jpg" class="w-16 h-16 mx-auto mb-4 opacity-80" alt="Founder">
+                    <h3 class="font-bold text-emerald-400 mb-2">عبدالله عبيد</h3>
+                    <p class="text-[10px] text-slate-300">محلل بيانات وممارس تعلم آلة ومعلم علوم بخلفية تكنولوجية واسعة.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="layer-student" class="layer">
+        <div class="glass-panel p-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+                <div class="text-center">
+                    <div class="w-32 h-32 mx-auto rounded-full border-4 border-emerald-500 overflow-hidden bg-slate-800 mb-4" id="std-pic">
+                        <i class="fas fa-user-graduate text-4xl mt-10 text-slate-600"></i>
+                    </div>
+                    <input type="file" id="upload-std" class="hidden" onchange="previewImg(this, 'std-pic')">
+                    <button onclick="document.getElementById('upload-std').click()" class="text-xs underline text-emerald-400">تحميل صورة الطالب</button>
+                </div>
+                <div class="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <input type="text" placeholder="اسم الطالب" class="w-full">
+                    <input type="text" placeholder="الصف والشعبة" class="w-full">
+                    <input type="text" placeholder="اسم المدرسة" class="w-full">
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-emerald-900/20 p-8 rounded-[2rem] border border-emerald-500/20">
+                    <h3 class="text-xl font-black mb-4"><i class="fas fa-brain ml-2"></i> AI Tutor | المساعد الذكي</h3>
+                    <div id="chat-box" class="h-48 overflow-y-auto mb-4 bg-black/30 p-4 rounded-xl text-sm"></div>
+                    <div class="flex gap-2">
+                        <input type="text" id="chat-in" placeholder="اسأل عَقِيلة عن واجباتك..." class="flex-1">
+                        <button onclick="sendChat()" class="bg-emerald-600 px-6 rounded-xl"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+                <div class="bg-white/5 p-8 rounded-[2rem] border border-white/10">
+                    <h3 class="font-bold text-blue-400 mb-4 italic underline">بوصلة التوجيه الذكي</h3>
+                    <p class="text-xs leading-relaxed opacity-70 italic">"بناءً على نشاطك الأخير، ننصحك بالتركيز على المختبر الافتراضي للكيمياء اليوم لتعزيز مهاراتك."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="layer-teacher" class="layer">
+        <div class="glass-panel p-10">
+            <h2 class="text-3xl font-black text-emerald-400 mb-8 border-r-4 border-emerald-500 pr-4">نظام التخطيط والتحليل الذكي</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <div class="space-y-4">
+                    <input type="text" id="t-sch" placeholder="اسم المدرسة" class="w-full">
+                    <input type="text" id="t-name" placeholder="اسم المعلم" class="w-full">
+                    <input type="text" id="t-sub" placeholder="المادة" class="w-full">
+                </div>
+                <div class="space-y-4">
+                    <input type="date" id="t-start" title="بداية الفصل" class="w-full text-xs">
+                    <input type="date" id="t-end" title="نهاية الفصل" class="w-full text-xs">
+                    <select class="w-full"><option>الفصل الأول</option><option>الفصل الثاني</option></select>
+                </div>
+                <div class="border-2 border-dashed border-emerald-500/30 rounded-3xl p-6 text-center">
+                    <i class="fas fa-book-open text-3xl mb-3 text-emerald-500"></i>
+                    <p class="text-xs mb-4">ارفع الكتاب المدرسي (PDF)</p>
+                    <button class="bg-emerald-600 text-[10px] px-4 py-2 rounded-lg font-bold">بدء التحليل الذكي</button>
+                </div>
+            </div>
+            <div class="flex gap-4 mb-6 no-print">
+                <button onclick="generateTeacherReport()" class="bg-blue-600 px-6 py-2 rounded-xl text-xs font-bold">توليد تقرير النتائج للمدير</button>
+                <button class="bg-white/10 px-6 py-2 rounded-xl text-xs font-bold">استخراج بنك الأسئلة</button>
+            </div>
+            <div id="teacher-output" class="bg-white/5 p-6 rounded-3xl border border-white/10 min-h-[200px]">
+                <p class="text-center italic opacity-30 py-10">سيتم عرض نتائج تحليل الكتاب والخطط هنا...</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="layer-manager" class="layer">
+        <div class="glass-panel p-10">
+            <h2 class="text-3xl font-black text-blue-400 mb-8 border-r-4 border-blue-500 pr-4">مركز القيادة والتقارير الوزارية</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <div class="space-y-4">
+                    <div class="bg-white/5 p-6 rounded-3xl border border-white/10 text-center">
+                        <i class="fas fa-file-excel text-4xl mb-4 text-emerald-500"></i>
+                        <p class="text-xs font-bold mb-4">رفع ملف النتائج (Excel/CSV)</p>
+                        <input type="file" id="mgr-xl" class="hidden" onchange="processManagerXL()">
+                        <button onclick="document.getElementById('mgr-xl').click()" class="bg-emerald-600 w-full py-2 rounded-xl text-xs">اختيار الملف</button>
+                    </div>
+                </div>
+                <div class="lg:col-span-3">
+                    <div id="mgr-report-area" class="hidden animate-fade-in bg-white text-slate-900 p-12 rounded-xl shadow-2xl">
+                        <div class="flex justify-between border-b-2 border-slate-900 pb-6 mb-6 font-bold text-xs">
+                            <div class="text-right">
+                                <p>دولة فلسطين</p>
+                                <p>وزارة التربية والتعليم</p>
+                                <p id="out-sch">المدرسة: ...........</p>
+                            </div>
+                            <div class="text-center">
+                                <h1 class="text-lg font-black underline">تقرير النتائج الرسمي</h1>
+                                <p class="mt-2 text-[10px]">صادر عن منظومة عَقِيلَة الذكية 2026</p>
+                            </div>
+                            <div class="text-left">
+                                <p>تاريخ الصدور: <span id="out-date"></span></p>
+                            </div>
+                        </div>
+                        <p class="font-bold mb-4 italic">السيد/ مدير عام الامتحانات في وزارة التربية والتعليم المحترم،،</p>
+                        <p class="text-sm leading-loose mb-6">نرفق لكم طياً نتائج التحصيل الدراسي لطلبتنا، مضافاً إليها التحليلات البيانية ومؤشرات الأداء الأكاديمي المعتمدة.</p>
+                        <div class="h-64 mb-8">
+                            <canvas id="mgr-chart"></canvas>
+                        </div>
+                        <div id="mgr-table-out"></div>
+                        <div class="mt-12 flex justify-end">
+                            <div class="text-center border-t border-slate-300 pt-4 px-10">
+                                <p class="font-bold">مدير المدرسة</p>
+                            </div>
+                        </div>
+                        <button onclick="window.print()" class="no-print mt-10 bg-slate-900 text-white px-8 py-3 rounded-full text-xs font-bold w-full">تصدير التقرير كـ PDF</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="layer-teacher-report" class="layer">
+        <div class="glass-panel p-12 bg-white text-slate-900 max-w-4xl">
+             <div class="text-center border-b-2 border-slate-900 pb-4 mb-6">
+                <h1 class="text-2xl font-black uppercase">تقرير أداء المادة والنتائج</h1>
+                <p>موجه إلى: مدير المدرسة المحترم</p>
+             </div>
+             <div class="space-y-4 text-sm leading-relaxed">
+                <p>أنا المعلم/ <span id="r-t-name" class="font-bold">...</span>، أقدم لكم تقرير نتائج مادة <span id="r-t-sub" class="font-bold">...</span>.</p>
+                <div class="bg-slate-100 p-6 rounded-xl">
+                    <p class="font-bold mb-2">توصيات المعلم:</p>
+                    <p class="italic">بناءً على تحليل عَقِيلة، ننصح بتكثيف الحصص المخبرية لوحدة العلوم الحياتية.</p>
+                </div>
+             </div>
+             <button onclick="showLayer('teacher')" class="no-print mt-10 bg-emerald-600 text-white px-8 py-3 rounded-full text-xs">إغلاق المعاينة</button>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. المحرك ثلاثي الأبعاد ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+        const material = new THREE.MeshPhongMaterial({ color: 0x059669, wireframe: true });
+        const obj = new THREE.Mesh(geometry, material);
+        obj.scale.set(0.2, 0.2, 0.2);
+        scene.add(obj);
+
+        const light = new THREE.PointLight(0xffffff, 1, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        scene.add(new THREE.AmbientLight(0x444444));
+        camera.position.z = 8;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            obj.rotation.x += 0.005;
+            obj.rotation.y += 0.005;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // --- 2. نظام التنقل ---
+        function showLayer(id) {
+            document.querySelectorAll('.layer').forEach(l => {
+                l.classList.remove('active');
+                l.style.display = 'none';
+            });
+            const target = document.getElementById('layer-' + id);
+            target.style.display = 'flex';
+            setTimeout(() => target.classList.add('active'), 50);
+
+            // تحريك الكاميرا
+            if(id === 'home') gsap.to(camera.position, {z: 8, x: 0, duration: 1.5});
+            else if(id === 'student') gsap.to(camera.position, {z: 5, x: -3, duration: 1.5});
+            else gsap.to(camera.position, {z: 5, x: 3, duration: 1.5});
+        }
+
+        // --- 3. الوظائف المنطقية ---
+        function previewImg(input, targetId) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById(targetId).innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover">`;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function sendChat() {
+            const cin = document.getElementById('chat-in');
+            const box = document.getElementById('chat-box');
+            if(!cin.value) return;
+            box.innerHTML += `<div class="mb-2 text-emerald-400"><b>أنت:</b> ${cin.value}</div>`;
+            setTimeout(() => {
+                box.innerHTML += `<div class="mb-4 text-white opacity-80"><b>عَقِيلة:</b> سأقوم بتحليل سؤالك "${cin.value}" ومساعدتك في حله فوراً.</div>`;
+                box.scrollTop = box.scrollHeight;
+            }, 600);
+            cin.value = "";
+        }
+
+        function generateTeacherReport() {
+            document.getElementById('r-t-name').innerText = document.getElementById('t-name').value || "غير معرف";
+            document.getElementById('r-t-sub').innerText = document.getElementById('t-sub').value || "المادة";
+            showLayer('teacher-report');
+        }
+
+        function processManagerXL() {
+            document.getElementById('mgr-report-area').classList.remove('hidden');
+            document.getElementById('out-sch').innerText = "المدرسة: " + (document.getElementById('t-sch').value || "مدرسة عَقِيلة النموذجية");
+            document.getElementById('out-date').innerText = new Date().toLocaleDateString('ar-EG');
+            
+            // رسم الشارت
+            const ctx = document.getElementById('mgr-chart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['ممتاز', 'جيد جداً', 'جيد', 'مقبول'],
+                    datasets: [{
+                        data: [12, 19, 3, 5],
+                        backgroundColor: ['#059669', '#0284c7', '#f59e0b', '#ef4444']
+                    }]
+                }
+            });
+
+            document.getElementById('mgr-table-out').innerHTML = `
+                <table class="w-full text-xs border-collapse border border-slate-300">
+                    <tr class="bg-slate-100">
+                        <th class="border p-2">اسم الطالب</th><th class="border p-2">المعدل</th><th class="border p-2">النتيجة</th>
+                    </tr>
+                    <tr><td class="border p-2">أحمد محمد</td><td class="border p-2">95%</td><td class="border p-2 font-bold text-emerald-700">ناجح</td></tr>
+                    <tr><td class="border p-2">سارة علي</td><td class="border p-2">88%</td><td class="border p-2 font-bold text-emerald-700">ناجح</td></tr>
+                </table>
+            `;
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+/* الأساسيات */
+:root{
+  --aqila-blue:#004aad;
+  --aqila-cyan:#00c6ff;
+  --bg:#f7f9fc;
+  --card:#ffffff;
+  --shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+
+body{
+  margin:0; padding:0;
+  font-family:"Tajawal",sans-serif;
+  background:var(--bg); color:#222;
+}
+
+/* الهيدر */
+.aqila-header{
+  background:linear-gradient(90deg,var(--aqila-blue),var(--aqila-cyan));
+  color:#fff; position:relative;
+}
+.header-inner{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:16px 24px;
+}
+.brand-wrap{display:flex; align-items:center; gap:10px}
+.logo{width:60px}
+.brand-name{margin:0; font-size:1.4rem}
+.brand-slogan{margin:0; font-size:0.9rem; opacity:0.85}
+.nav{display:flex; gap:8px}
+.nav-btn{
+  border:none; border-radius:999px; padding:8px 14px;
+  background:rgba(255,255,255,0.2); color:#fff; cursor:pointer;
+  font-weight:600; transition:background 0.2s;
+}
+.nav-btn.active{background:#fff; color:var(--aqila-blue)}
+.nav-btn:hover{background:rgba(255,255,255,0.3)}
+
+/* البطاقات */
+.card{
+  background:var(--card);
+  margin:20px auto; padding:20px;
+  border-radius:14px; box-shadow:var(--shadow);
+  width:min(1100px,92vw);
+}
+.section-title{color:var(--aqila-blue); margin:0 0 8px}
+.section-subtitle{color:#555; margin:0 0 14px}
+
+/* محتوى الدرس */
+.lesson-grid{display:grid; gap:16px}
+.lesson-block{background:#f0f6ff; padding:14px; border-radius:12px}
+.lesson-block h3{margin-top:0; color:var(--aqila-blue)}
+.bullet{padding-inline-start:18px}
+.note{color:#777; font-size:0.9rem}
+
+/* المخطط المفاهيمي */
+.concept-map .map-container{
+  display:flex; justify-content:space-around; align-items:center;
+  margin:20px 0; position:relative;
+}
+.node{
+  width:140px; height:140px; border-radius:50%;
+  background:var(--aqila-blue); color:#fff; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; transition:transform 0.3s, background 0.3s;
+}
+.node:hover{transform:scale(1.1); background:var(--aqila-cyan)}
+.arrows{position:absolute; inset:0; pointer-events:none}
+.flow{stroke-dasharray:12; animation:dash 2s linear infinite}
+.flow-caption{text-align:center; color:#555; margin-top:10px}
+
+/* البطاقات المنبثقة */
+.modal{
+  position:fixed; inset:0; display:none;
+  background:rgba(0,0,0,0.45); backdrop-filter:blur(2px);
+  z-index:1000; padding:24px;
+}
+.modal[aria-hidden="false"]{display:block}
+.modal-content{
+  width:min(600px,90vw); margin:40px auto; background:#fff;
+  border-radius:14px; box-shadow:var(--shadow);
+  padding:18px; position:relative;
+}
+.modal-close{
+  position:absolute; top:10px; left:10px;
+  background:none; border:none; font-size:1.2rem; cursor:pointer;
+}
+.modal h3{color:var(--aqila-blue)}
+.modal-image{width:100%; border-radius:12px; margin-top:10px}
+
+/* التقييم الذاتي */
+.scoreboard{
+  display:flex; gap:12px; flex-wrap:wrap;
+  background:#eef6ff; padding:10px; border-radius:10px;
+  margin-bottom:14px; border:1px solid #dce6f9;
+}
+.score-item span{color:#555}
+.quiz-list{display:grid; gap:14px}
+.quiz-item{background:#f9fbff; padding:14px; border-radius:12px}
+.question{font-weight:700; color:var(--aqila-blue)}
+.answer{
+  display:block; width:100%; margin:6px 0; padding:10px;
+  border:none; border-radius:10px; cursor:pointer;
+  background:#eef6ff; font-weight:600; transition:background 0.2s;
+}
+.answer:hover{background:#dceeff}
+.answer.selected.correct{background:#d9f7e5; box-shadow:0 0 0 2px #1a7f37 inset}
+.answer.selected.wrong{background:#fde4e4; box-shadow:0 0 0 2px #c62828 inset}
+.answer[disabled]{opacity:0.7; cursor:not-allowed}
+.feedback{margin-top:6px; font-weight:700}
+.feedback.correct{color:#1a7f37}
+.feedback.wrong{color:#c62828}
+.final-result{
+  margin-top:14px; padding:16px; text-align:center;
+  background:#eef6ff; border-left:6px solid var(--aqila-blue);
+  border-radius:12px;
+}
+.final-badge{
+  display:inline-block; margin:8px 0; padding:8px 16px;
+  background:linear-gradient(90deg,var(--aqila-blue),var(--aqila-cyan));
+  color:#fff; border-radius:999px; font-weight:700;
+}
+.reset-btn{
+  border:none; border-radius:10px; padding:10px 16px;
+  background:var(--aqila-blue); color:#fff; cursor:pointer;
+}
+.reset-btn:hover{background:var(--aqila-cyan)}
+
+/* الأنشطة */
+.activity{
+  background:#eef6ff; border-left:6px solid var(--aqila-blue);
+  border-radius:12px; padding:14px; margin:12px 0;
+}
+.activity h3{color:var(--aqila-blue)}
+.steps{padding-inline-start:18px}
+.submit-btn{
+  display:inline-block; margin-top:10px;
+  background:linear-gradient(90deg,var(--aqila-blue),var(--aqila-cyan));
+  color:#fff; padding:10px 16px; border-radius:999px;
+  text-decoration:none; font-weight:700;
+}
+.submit-btn:hover{filter:brightness(1.05)}
+.submit-note{color:#555; margin-top:6px}
+
+/* الفوتر */
+.aqila-footer{text-align:center; color:#777; padding:18px}
+@keyframes dash{0%{stroke-dashoffset:0}100%{stroke-dashoffset:120}}

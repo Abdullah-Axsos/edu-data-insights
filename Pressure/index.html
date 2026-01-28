@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة عَقِيلة | درس الضغط - الصف السابع</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Cairo:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --aqila-green: #059669;
+            --aqila-blue: #005a8d;
+            --pressure-red: #ef4444;
+            --glass: rgba(255, 255, 255, 0.95);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body { margin: 0; font-family: 'Tajawal', sans-serif; background: #f0f4f8; color: #1e293b; }
+
+        /* الهيدر */
+        header {
+            background: var(--glass); backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 1000;
+            border-bottom: 3px solid var(--aqila-green);
+            padding: 10px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        .header-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 20px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo-group { display: flex; align-items: center; gap: 12px; }
+        .logo-main { height: 50px; }
+        .logo-founder { height: 40px; border-right: 2px solid #ddd; padding-right: 12px; }
+
+        .nav-menu { display: flex; gap: 10px; }
+        .nav-link {
+            padding: 8px 15px; border-radius: 20px; border: none;
+            background: transparent; color: var(--aqila-blue); font-weight: 700;
+            cursor: pointer; transition: 0.3s; font-family: 'Tajawal';
+        }
+        .nav-link.active, .nav-link:hover { background: var(--aqila-green); color: white; }
+
+        .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+
+        /* البطاقات */
+        .card {
+            background: #fff; border-radius: 20px; padding: 30px;
+            box-shadow: var(--shadow); margin-bottom: 35px; border: 1px solid #e2e8f0;
+        }
+        .section-title { color: var(--aqila-blue); font-family: 'Cairo'; display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+
+        /* محاكي الضغط التفاعلي */
+        .sim-box {
+            display: grid; grid-template-columns: 1fr 300px; gap: 20px;
+            background: #f8fafc; padding: 20px; border-radius: 15px;
+        }
+        .visual-area {
+            background: #fff; border: 2px solid #e2e8f0; border-radius: 12px;
+            height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 50px;
+        }
+        .ground { width: 80%; height: 20px; background: #94a3b8; border-radius: 10px; }
+        .object { 
+            background: var(--aqila-green); transition: 0.3s all; 
+            display: flex; align-items: center; justify-content: center; color: white; font-weight: 900;
+        }
+        .pressure-gauge {
+            margin-top: 20px; font-size: 1.5rem; font-weight: 900; color: var(--pressure-red);
+        }
+
+        /* بنك الأسئلة */
+        .quiz-item { background: #f1f5f9; padding: 20px; border-radius: 15px; margin-bottom: 15px; }
+        .opt-btn {
+            width: 100%; padding: 12px; margin: 5px 0; border: 1px solid #ddd;
+            border-radius: 10px; background: white; cursor: pointer; text-align: right;
+            font-family: 'Tajawal'; transition: 0.2s;
+        }
+        .opt-btn:hover { border-color: var(--aqila-green); background: #f0fdf4; }
+        .correct { background: #dcfce7 !important; border-color: #22c55e !important; }
+        .wrong { background: #fee2e2 !important; border-color: #ef4444 !important; }
+
+        /* المهمة الأسبوعية */
+        .task-zone { 
+            background: linear-gradient(135deg, #065f46 0%, #059669 100%); 
+            color: white; border-radius: 20px; padding: 30px; 
+        }
+        .task-card { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; margin: 15px 0; border: 1px solid rgba(255,255,255,0.2); }
+        
+        form.submission { background: white; color: #333; padding: 25px; border-radius: 15px; margin-top: 20px; }
+        input, textarea, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Tajawal'; }
+        .submit-btn { background: var(--aqila-blue); color: white; border: none; padding: 15px 30px; border-radius: 50px; font-weight: 900; cursor: pointer; width: 100%; }
+
+        .formula-box { background: #fff5f5; border-right: 5px solid var(--pressure-red); padding: 15px; margin: 20px 0; font-size: 1.2rem; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-group">
+                <img src="logo.png" alt="عقيلة" class="logo-main">
+                <img src="founder.png" alt="المؤسس" class="logo-founder">
+                <div style="font-family: 'Cairo'; color: var(--aqila-blue);">وحدة المادة والضغط | الصف السابع</div>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-link" onclick="scrollToId('concepts')">المفاهيم</button>
+                <button class="nav-link" onclick="scrollToId('sim')">المحاكاة</button>
+                <button class="nav-link" onclick="scrollToId('quiz')">الاختبار</button>
+                <button class="nav-link active" onclick="scrollToId('task')">المهمة</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <section id="concepts" class="card">
+            <h2 class="section-title"><i class="fas fa-square-root-alt"></i> قانون الضغط الفيزيائي</h2>
+            <p>الضغط هو القوة المؤثرة عمودياً على وحدة المساحة. كلما زادت القوة زاد الضغط، وكلما زادت المساحة قل الضغط.</p>
+            
+            
+
+            <div class="formula-box">
+                <strong>الضغط (باسكال) = القوة (نيوتن) ÷ المساحة (م²)</strong>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div style="background:#f0fdf4; padding:15px; border-radius:10px;">
+                    <h4 style="color:var(--aqila-green); margin-top:0;">علاقة طردية</h4>
+                    <p>مع القوة: زيادة الوزن تعني زيادة الضغط.</p>
+                </div>
+                <div style="background:#fff1f2; padding:15px; border-radius:10px;">
+                    <h4 style="color:var(--pressure-red); margin-top:0;">علاقة عكسية</h4>
+                    <p>مع المساحة: زيادة المساحة تعني نقصان الضغط.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="sim" class="card">
+            <h2 class="section-title"><i class="fas fa-vial"></i> محاكي العوامل المؤثرة (تحكم وجرب)</h2>
+            <div class="sim-box">
+                <div class="visual-area">
+                    <div id="sim-object" class="object" style="width: 100px; height: 100px;">100N</div>
+                    <div class="ground"></div>
+                    <div class="pressure-gauge">الضغط: <span id="p-val">1.0</span> باسكال</div>
+                </div>
+                <div class="controls" style="display:flex; flex-direction:column; gap:15px;">
+                    <label>تحكم في القوة (الوزن):</label>
+                    <input type="range" id="f-range" min="50" max="500" value="100" oninput="updateSim()">
+                    <label>تحكم في مساحة القاعدة:</label>
+                    <input type="range" id="a-range" min="20" max="200" value="100" oninput="updateSim()">
+                    <p style="font-size:0.8rem; color:#666;">* لاحظ كيف يتغير الرقم الأحمر عند تصغير القاعدة أو زيادة الوزن.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" class="card">
+            <h2 class="section-title"><i class="fas fa-question-circle"></i> بنك الأسئلة الشامل</h2>
+            <div id="quiz-container"></div>
+        </section>
+
+        <section id="task" class="task-zone">
+            <h2><i class="fas fa-pencil-ruler"></i> مختبر "عَقِيلة" الإبداعي: مهمة الأسبوع</h2>
+            
+            <div class="task-card">
+                <h3>المهمة: "تحدي انغراس الأقدام"</h3>
+                <p><strong>الهدف:</strong> إثبات العلاقة العكسية بين المساحة والضغط عملياً.</p>
+                <p><strong>الخطوات:</strong> 
+                    1. ابحث عن أرض رملية أو طينية (أو وعاء به رمل).<br>
+                    2. قف على قدمين ولاحظ عمق الأثر.<br>
+                    3. قف على قدم واحدة ولاحظ الفرق في العمق.<br>
+                    4. استخدم الذكاء الاصطناعي لحساب مساحة قدمك التقريبية (طول × عرض × 0.8).
+                </p>
+            </div>
+
+            <form class="submission" action="https://formsubmit.co/mr.ebaid.sch@gmail.com" method="POST">
+                <h4 style="margin:0 0 15px 0;">تسليم تقرير تجربة الضغط</h4>
+                <input type="text" name="name" placeholder="اسم الطالب الكامل" required>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                    <select name="class" required>
+                        <option value="">الشعبة</option>
+                        <option value="A">أ</option><option value="B">ب</option><option value="C">ج</option>
+                    </select>
+                    <input type="number" name="area_est" placeholder="مساحة قدمك (سم²)">
+                </div>
+                <textarea name="observations" rows="4" placeholder="الملاحظات: في أي حالة كان الغوص في الرمل أكبر؟ ولماذا؟" required></textarea>
+                <input type="url" name="link" placeholder="رابط صورة التجربة (Drive)">
+                <button type="submit" class="submit-btn">إرسال التقرير للأستاذ عبدالله عبيد</button>
+            </form>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>منصة عَقِيلة 2026 | جميع الحقوق محفوظة للأستاذ عبدالله عبيد</p>
+    </footer>
+
+    <script>
+        // المحاكي
+        function updateSim() {
+            const f = document.getElementById('f-range').value;
+            const a = document.getElementById('a-range').value;
+            const obj = document.getElementById('sim-object');
+            
+            obj.style.width = a + 'px';
+            obj.innerText = f + 'N';
+            
+            const p = (f / a).toFixed(2);
+            document.getElementById('p-val').innerText = p;
+            
+            // تأثير بصري للضغط
+            const colorVal = Math.min(255, p * 50);
+            document.querySelector('.pressure-gauge').style.color = `rgb(${colorVal}, 0, 0)`;
+        }
+
+        // الأسئلة
+        const quizData = [
+            {
+                q: "ما هي وحدة قياس الضغط الدولية؟",
+                options: ["نيوتن", "باسكال", "جول"],
+                correct: 1
+            },
+            {
+                q: "لماذا ينفجر البالون عند وضعه على دبوس واحد ولا ينفجر على 100 دبوس؟",
+                options: ["لأن القوة تزداد", "لأن المساحة تزداد فيقل الضغط", "لأن الدبابيس الكثيرة ليست حادة"],
+                correct: 1
+            },
+            {
+                q: "جسم قوته 200 نيوتن ومساحته 2 م²، كم يبلغ ضغطه؟",
+                options: ["100 باسكال", "400 باسكال", "0.01 باسكال"],
+                correct: 0
+            },
+            {
+                q: "انتعال الكعب العالي الرفيع يسبب آلام الظهر لأن:",
+                options: ["المساحة صغيرة فيقل الضغط", "المساحة صغيرة فيزداد الضغط", "الوزن يقل"],
+                correct: 1
+            }
+        ];
+
+        function loadQuiz() {
+            const container = document.getElementById('quiz-container');
+            quizData.forEach((item, idx) => {
+                const div = document.createElement('div');
+                div.className = 'quiz-item';
+                div.innerHTML = `
+                    <p><strong>س${idx+1}: ${item.q}</strong></p>
+                    ${item.options.map((opt, i) => `
+                        <button class="opt-btn" onclick="check(this, ${i==item.correct})">${opt}</button>
+                    `).join('')}
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function check(btn, isCorrect) {
+            btn.parentElement.querySelectorAll('button').forEach(b => b.style.pointerEvents = 'none');
+            btn.classList.add(isCorrect ? 'correct' : 'wrong');
+        }
+
+        function scrollToId(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        window.onload = () => { loadQuiz(); updateSim(); };
+    </script>
+</body>
+</html>

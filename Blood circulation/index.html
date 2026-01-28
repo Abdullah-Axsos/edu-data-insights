@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة عَقِيلة | رحلة في الدورة الدموية</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Cairo:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --aqila-blue: #004aad;
+            --aqila-cyan: #00c6ff;
+            --pulmonary: #2c3e50; /* الدورة الصغرى */
+            --systemic: #e74c3c;  /* الدورة الكبرى */
+            --glass: rgba(255, 255, 255, 0.95);
+            --shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body { 
+            margin: 0; font-family: 'Tajawal', sans-serif; 
+            background: #f8fafc; color: #1e293b; 
+        }
+
+        /* الهيدر المطور */
+        header {
+            background: var(--glass); backdrop-filter: blur(12px);
+            position: sticky; top: 0; z-index: 1000;
+            border-bottom: 3px solid var(--aqila-cyan);
+            padding: 10px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .header-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 20px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo-group { display: flex; align-items: center; gap: 15px; }
+        .logo-main { height: 50px; }
+        .logo-founder { height: 40px; border-right: 2px solid #e2e8f0; padding-right: 15px; }
+
+        .nav-menu { display: flex; gap: 8px; }
+        .nav-link {
+            text-decoration: none; padding: 8px 16px; border-radius: 20px;
+            color: var(--aqila-blue); font-weight: 700; transition: 0.3s;
+            background: transparent; border: none; cursor: pointer;
+        }
+        .nav-link:hover, .nav-link.active { background: var(--aqila-blue); color: #fff; }
+
+        .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+
+        /* الأقسام (Cards) */
+        .glass-card {
+            background: #fff; border-radius: 24px; padding: 35px;
+            box-shadow: var(--shadow); margin-bottom: 40px; border: 1px solid #f1f5f9;
+        }
+        h2.section-title { 
+            color: var(--aqila-blue); font-family: 'Cairo'; 
+            display: flex; align-items: center; gap: 12px; margin-bottom: 25px;
+        }
+
+        /* المختبر الافتراضي */
+        .lab-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; }
+        .viewer-box { 
+            height: 550px; background: #000; border-radius: 18px; 
+            overflow: hidden; border: 4px solid #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .controls-list { display: flex; flex-direction: column; gap: 12px; }
+        .control-btn {
+            padding: 15px; border: none; border-radius: 15px; cursor: pointer;
+            font-weight: 900; transition: 0.3s; display: flex; align-items: center; gap: 10px;
+            font-family: 'Tajawal'; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .btn-blue { background: #eff6ff; color: var(--pulmonary); border-right: 6px solid var(--aqila-cyan); }
+        .btn-red { background: #fef2f2; color: var(--systemic); border-right: 6px solid var(--systemic); }
+
+        /* بنك الأسئلة */
+        .quiz-item { 
+            background: #f8fafc; padding: 25px; border-radius: 20px; 
+            margin-bottom: 20px; border: 1px solid #e2e8f0;
+        }
+        .goal-badge { 
+            font-size: 0.75rem; padding: 4px 12px; border-radius: 50px; 
+            background: var(--aqila-blue); color: #fff; margin-bottom: 10px; display: inline-block;
+        }
+        .option-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
+        .opt-btn {
+            padding: 15px; border: 2px solid #fff; border-radius: 12px; 
+            background: #fff; cursor: pointer; transition: 0.3s; font-family: 'Tajawal';
+        }
+        .opt-btn:hover { border-color: var(--aqila-cyan); transform: translateY(-2px); }
+        .correct { background: #dcfce7 !important; border-color: #22c55e !important; color: #166534; }
+        .wrong { background: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b; }
+
+        /* المهمة الأسبوعية المجدولة */
+        .task-box { 
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid var(--aqila-cyan); border-radius: 20px; padding: 25px; margin-top: 20px;
+        }
+        .task-step { display: flex; gap: 15px; margin-bottom: 15px; align-items: flex-start; }
+        .step-num { 
+            background: var(--aqila-blue); color: #fff; width: 28px; height: 28px; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+
+        /* الفورم */
+        form.submission-form { display: grid; gap: 15px; margin-top: 30px; }
+        input, textarea, select {
+            width: 100%; padding: 14px; border: 2px solid #e2e8f0; border-radius: 12px; font-family: 'Tajawal';
+        }
+        .submit-all-btn {
+            background: var(--aqila-blue); color: #fff; border: none; padding: 18px;
+            border-radius: 50px; font-weight: 900; font-size: 1.1rem; cursor: pointer; transition: 0.3s;
+        }
+        .submit-all-btn:hover { background: #003580; letter-spacing: 1px; }
+
+        footer { text-align: center; padding: 50px; background: #fff; margin-top: 50px; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-group">
+                <img src="logo.png" alt="عقيلة" class="logo-main">
+                <img src="founder.png" alt="المؤسس" class="logo-founder">
+                <div style="font-family: 'Cairo'; font-weight: 900; color: var(--aqila-blue);">جهاز الدوران | الصف السادس</div>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-link" onclick="scrollToId('lab')">المختبر</button>
+                <button class="nav-link" onclick="scrollToId('book')">الكتاب</button>
+                <button class="nav-link" onclick="scrollToId('quiz')">بنك الأسئلة</button>
+                <button class="nav-link active" onclick="scrollToId('tasks')">المهام</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <section id="lab" class="glass-card">
+            <h2 class="section-title"><i class="fas fa-microscope"></i> المختبر الافتراضي (3D)</h2>
+            <div class="lab-layout">
+                <div class="viewer-box">
+                    <iframe id="viewer-frame" src="https://human.biodigital.com/widget/?be=4P9I&ui-dissect=true&ui-info=false" width="100%" height="100%" frameborder="0"></iframe>
+                </div>
+                <div class="controls-list">
+                    <button class="control-btn btn-red" onclick="changeView('systemic')">
+                        <i class="fas fa-sync-alt"></i> الدورة الدموية في جسم الإنسان
+                    </button>
+                    <button class="control-btn" style="background:#fff" onclick="changeView('heart')">
+                        <i class="fas fa-heart"></i> عمل القلب كمضخة
+                    </button>
+                    <div style="margin-top:auto; padding:15px; background:#f1f5f9; border-radius:12px; font-size:0.85rem">
+                        <strong>تعليمات:</strong> تتبع مسار اللون الأحمر (دم مؤكسج) والأزرق (دم غير مؤكسج) في النموذج.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="book" class="glass-card">
+            <h2 class="section-title"><i class="fas fa-book-reader"></i> مرجع الدرس (ص 16 - 21)</h2>
+            <iframe src="https://www.wepal.net/library/upload/03-2021/content/603e77c170b43.pdf#page=16" width="100%" height="600px" style="border-radius:15px; border:1px solid #ddd;"></iframe>
+        </section>
+
+        <section id="quiz" class="glass-card">
+            <h2 class="section-title"><i class="fas fa-brain"></i> تحدي الذكاء التفاعلي</h2>
+            <div id="quiz-container">
+                </div>
+        </section>
+
+        <section id="tasks" class="glass-card">
+            <h2 class="section-title"><i class="fas fa-flask"></i> المهام الأسبوعية</h2>
+            
+<div class="task-box">
+    <h3 style="color: var(--aqila-blue); margin-top: 0;"><i class="fas fa-walking"></i> المهمة (1): محاكاة "ساعي البريد الحيوي"</h3>
+    <p><strong>الهدف:</strong> فهم الفرق بين الدورة الصغرى والكبرى وسبب اختلاف سمك جدران القلب.</p>
+    <div class="task-step"><div class="step-num">1</div><p>حدد 4 محطات في منزلك (القلب، الرئتين، الرأس، الأطراف).</p></div>
+    <div class="task-step"><div class="step-num">2</div><p>استخدم كرات حمراء (أكسجين) وزرقاء (فضلات) وانتقل بين المحطات كأنك الدم.</p></div>
+    <div class="task-step"><div class="step-num">3</div><p>سجل فيديو يشرح لماذا احتجت "قوة دفع أكبر" للوصول للمحطات البعيدة مقارنة بالرئتين.</p></div>
+</div>
+
+            <div class="task-box" style="border-color: #a855f7; background: #faf5ff; margin-top:20px;">
+                <h3 style="color: #7e22ce; margin-top: 0;"><i class="fas fa-robot"></i> المهمة (2): البحث المدعم بالذكاء الاصطناعي</h3>
+                <p><strong>الهدف:</strong> تقدير دور العلماء المسلمين (ابن النفيس) وفهم تغذية عضلة القلب.</p>
+                <div class="task-step"><div class="step-num">1</div><p>استخدم أحد محركات الذكاء الاصطناعي للبحث عن "ابن النفيس واكتشاف الدورة الصغرى".</p></div>
+                <div class="task-step"><div class="step-num">2</div><p>اسأل الذكاء الاصطناعي: "كيف يحصل القلب على غذائه وهو يضخ الدم للجسم؟".</p></div>
+                <div class="task-step"><div class="step-num">3</div><p>لخص النتائج في تقريرك المرفق بالأسفل.</p></div>
+            </div>
+
+            <form class="submission-form" action="https://formsubmit.co/mr.ebaid.sch@gmail.com" method="POST">
+                <h3 style="border-bottom: 2px solid #eee; padding-bottom: 10px;">تسليم تقرير التجربة / البحث</h3>
+                <input type="text" name="student_name" placeholder="اسم الطالب الرباعي" required>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
+                    <select name="class_section" required>
+                        <option value="">اختر الشعبة</option>
+                        <option value="A">أ</option>
+                        <option value="B">ب</option>
+                        <option value="C">ج</option>
+                    </select>
+                    <select name="task_choice" required>
+                        <option value="">نوع المهمة المنجزة</option>
+                        <option value="Model">ساعي البريد الحيوي</option>
+                        <option value="AI_Research">بحث الذكاء الاصطناعي</option>
+                    </select>
+                </div>
+                <textarea name="findings" rows="5" placeholder="النتائج والملاحظات: ما هو الاستنتاج العلمي الذي توصلت إليه؟" required></textarea>
+                <input type="url" name="evidence_link" placeholder="رابط توثيق المهمة (صور أو فيديو على Drive)">
+                
+                <button type="submit" class="submit-all-btn">إرسال التقرير للأستاذ عبدالله عبيد 📤</button>
+            </form>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>منصة عَقِيلة 2026 - رؤية تعليمية متطورة</p>
+        <p>جميع الحقوق محفوظة للأستاذ عبدالله عبيد</p>
+    </footer>
+
+    <script>
+        // 1. منطق تبديل النماذج 3D
+        function changeView(type) {
+            const frame = document.getElementById('viewer-frame');
+            const links = {
+                'systemic': 'https://human.biodigital.com/view?id=production/maleAdult/cardiopulmonary_circulation_02&lang=en',
+                'heart': 'https://human.biodigital.com/view?id=production/maleAdult/cardiology_anatomy_foundation&lang=en&ref=share'
+            };
+            frame.src = links[type];
+        }
+
+        // 2. بيانات بنك الأسئلة الشاملة
+        const quizQuestions = [
+            {
+                goal: "تقدير العلماء المسلمين",
+                q: "من هو العالم الذي اكتشف الدورة الدموية الصغرى؟",
+                options: ["ابن سينا", "ابن النفيس", "وليم هارفي"],
+                correct: 1
+            },
+            {
+                goal: "تتبع المسار (الدورة الكبرى)",
+                q: "أين يبدأ مسار الدم الغني بالأكسجين ليتوزع على الجسم؟",
+                options: ["البطين الأيمن", "البطين الأيسر", "الأذين الأيسر"],
+                correct: 1
+            },
+            {
+                goal: "آلية عمل القلب",
+                q: "ماذا يسمى تدفق الدم العائد من الجسم إلى القلب عند انبساط البطينين؟",
+                options: ["عملية الانقباض", "عملية الانبساط", "الدورة الرئوية"],
+                correct: 1
+            },
+            {
+                goal: "التشريح الوظيفي",
+                q: "لماذا جدار البطين الأيسر أسمك من البطين الأيمن؟",
+                options: ["لأنه يضخ الدم لمسافات بعيدة", "لأنه يستقبل الدم من الرئتين", "لأنه يحتوي على ثاني أكسيد الكربون"],
+                correct: 0
+            },
+            {
+                goal: "الصحة العامة",
+                q: "كيف يساهم التدخين في الإضرار بجهاز الدوران؟",
+                options: ["يقلل من سرعة النبض", "يؤدي إلى تصلب الشرايين", "يزيد من قوة جدار القلب"],
+                correct: 1
+            }
+        ];
+
+        function initQuiz() {
+            const container = document.getElementById('quiz-container');
+            quizQuestions.forEach((item, idx) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'quiz-item';
+                qDiv.innerHTML = `
+                    <span class="goal-badge">${item.goal}</span>
+                    <p style="font-weight:700;">س${idx+1}: ${item.q}</p>
+                    <div class="option-grid">
+                        ${item.options.map((opt, i) => `
+                            <button class="opt-btn" onclick="checkAnswer(this, ${i==item.correct})">${opt}</button>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(qDiv);
+            });
+        }
+
+        function checkAnswer(btn, isCorrect) {
+            const parent = btn.parentElement;
+            parent.querySelectorAll('button').forEach(b => b.style.pointerEvents = 'none');
+            if(isCorrect) {
+                btn.classList.add('correct');
+                btn.innerHTML += " ✨";
+            } else {
+                btn.classList.add('wrong');
+            }
+        }
+
+        function scrollToId(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>
